@@ -1,0 +1,106 @@
+# 酒店日期选择
+![gif][1]
+
+
+## 安装
+
+Install with [npm](https://www.npmjs.com/package/hotel-calendar): `npm install hotel-calendar --save`
+
+## 使用
+
+``` js
+var Calendar = require('calendar')
+var options = {}
+var calendar = new Calendar(options)
+calendar.init()
+```
+
+## Options
+
+### start
+
+**Type:** _String_
+
+**Value:** `'2017-04-10'`
+
+``` js
+start: '2017-04-10'
+```
+
+从哪个月开始.
+
+### end
+
+**Type:** _String_ 
+
+**Value:** `'2017-10-01'`
+
+``` js
+end: '2017-10-01'
+```
+
+到哪个月结束.
+
+### maxDays
+
+**Type:** _Number_
+
+**Value:** `20`
+
+``` js
+maxDays: 20
+```
+
+允许选择的最大天数
+
+### maxCallback
+
+**Type:** _Function_
+
+``` js
+maxCallback: function (startDate, endDate) {}
+```
+
+超出选择天数的回调
+
+## startCallback 
+
+**Type:** _Function_
+
+``` js
+startCallback: function (date) {}
+```
+
+入住点击回调
+
+### endCallback
+
+**Type:** _Function_
+
+``` js
+endCallback: function (date) {}
+```
+
+离店点击回调
+
+## Calendar静态方法
+
+### Calendar.format
+
+``` js
+Calendar.format(date, 'yyyy年MM月dd日 hh:mm:ss')
+```
+
+格式化时间
+
+## Browser support
+
+Android 4+, iOS 6+
+
+
+## License
+
+calendar is released under the [MIT License](http://desandro.mit-license.org/). Have at it.
+
+
+  [1]: http://7jptea.com1.z0.glb.clouddn.com/calendar/calendar-1.gif
