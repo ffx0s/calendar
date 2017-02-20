@@ -1,6 +1,6 @@
 {
-  "name": "calendar",
-  "version": "0.0.1",
+  "name": "hotel-calendar",
+  "version": "0.0.2",
   "description": "",
   "main": "build/calendar.js",
   "scripts": {
