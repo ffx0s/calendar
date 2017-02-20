@@ -1,8 +1,8 @@
 {
   "name": "hotel-calendar",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "",
-  "main": "build/calendar.js",
+  "main": "src/index.js",
   "scripts": {
     "dev": "./node_modules/.bin/rollup -c -w",
     "build": "NODE_ENV=production ./node_modules/.bin/rollup -c"

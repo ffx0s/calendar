@@ -6,8 +6,8 @@ import uglify from 'rollup-plugin-uglify'
 import replace from 'rollup-plugin-replace'
 
 export default {
-  entry: 'src/calendar.js',
-  dest: 'build/js/calendar.min.js',
+  entry: 'src/index.js',
+  dest: 'dist/calendar.min.js',
   format: 'umd',
   moduleName: 'Calendar',
   plugins: [
