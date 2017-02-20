@@ -4,7 +4,7 @@
 
 ## demo
 
-[https://ffx0s.github.io/calendar/dist/demo.html](https://ffx0s.github.io/calendar/dist/demo.html)
+[https://ffx0s.github.io/calendar/build/demo.html](https://ffx0s.github.io/calendar/build/demo.html)
 
 ## 安装
 
@@ -14,11 +14,20 @@ Install with [npm](https://www.npmjs.com/package/hotel-calendar): `npm install h
 
 ``` css
 <link rel="stylesheet" href="calendar.css">
+<script src="calendar.js"></script>
+
+<script>
+  var calendar = new Calendar(options)
+  calendar.init()
+</script>
 ```
+或者：
 ``` js
-var Calendar = require('calendar')
-var options = {}
-var calendar = new Calendar(options)
+import 'hotel-calendar/dist/calendar.css'
+import Calendar from 'hotel-calendar'
+
+const options = {}
+const calendar = new Calendar(options)
 calendar.init()
 ```
 
