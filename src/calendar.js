@@ -6,6 +6,12 @@ import getDefaultOptions from './calendar/options'
 export default class Calendar {
   constructor (options) {
     this.options = extend(getDefaultOptions(), options)
+    this.props = {
+      holidayText: '休',
+      workdayText: '班',
+      startText: '入住',
+      endText: '离店'
+    }
     this.el = this.options.el
     this.data = this.options.data
     this.startDate = new Date(this.options.start)
@@ -59,9 +65,10 @@ export default class Calendar {
 
   createDays (year, month) {
     const date = new Date(year, month - 1, 1)
-    const nowDay = getCurTime().day
     const curMonthData = this.data[month - 1]
     const preDayCount = date.getDay()
+    const isStartMonth = this.monthType('start', month)
+    const isEndMonth = this.monthType('end', month)
     let preDayCounter = preDayCount
     let days = []
     // 记录每月开始前的补齐数量
@@ -75,14 +82,14 @@ export default class Calendar {
       const value = `${year}-${zeroPadding(month)}-${zeroPadding(day)}`
       let type = this.dayType(year, month, day)
       let text = curMonthData.fest[day] || day
-      // 禁用当天以前的日期
-      if (this.isCurMonth(year, month) && day < nowDay) {
+      // 禁用日期
+      if (isStartMonth && day < this.startDate.getDate() || isEndMonth && day > this.endDate.getDate()) {
         type += ' disabled'
       } else if (this.isToday(year, month, day)) {
         type += ' today'
         text = '今天'
       }
-      const remark = this.isHoliday(month, day) ? this.options.text.holiday : this.isWorkDay(month, day) ? this.options.text.workday : ''
+      const remark = this.isHoliday(month, day) ? this.props.holidayText : this.isWorkDay(month, day) ? this.props.workdayText : ''
       const index = day + preDayCount - 1
       days.push(dayItem(type.trim(), text, remark, value, index))
       day++
@@ -157,15 +164,12 @@ export default class Calendar {
       this.reset()
     }
     const index = +el.getAttribute('data-index')
-    const html = el.innerHTML
     const date = new Date(dateStr)
     const month = date.getMonth() + 1
-    const day = date.getDate()
     if (this.start.index === index) { // 取消选择入住时间
       this.reset()
     } else if (!this.start.html) { // 选择入住时间
-      this.start = { html, date, index, el }
-      el.innerHTML = daySelect(day, 'start')
+      this.setDayState(el, 'start', index)
       // 入住回调
       this.options.startCallback.call(this, date)
     } else { // 选择离店时间
@@ -185,8 +189,7 @@ export default class Calendar {
         const startMonthElem = Calendar.getParent(this.start.el)
         const startDaysElems = startMonthElem.getElementsByTagName('li')
         // 设置离店样式
-        this.end = { html, date, index, el }
-        el.innerHTML = daySelect(day, 'end')
+        this.setDayState(el, 'end', index)
         // 找出第一个月选择的日期节点
         this.findSelectDayElems(startDaysElems, this.start.index, startDaysElems.length - 1)
         // 找出中间月份的的日期节点
@@ -209,8 +212,7 @@ export default class Calendar {
           return false
         }
         // 设置离店样式
-        this.end = { html, date, index, el }
-        el.innerHTML = daySelect(day, 'end')
+        this.setDayState(el, 'end', index)
         // 找出开始到结束选中的日期节点
         this.findSelectDayElems(daysElems, this.start.index, index)
         // 给选中的日期节点添加class
@@ -315,7 +317,7 @@ export default class Calendar {
     const date = new Date(el.getAttribute('data-date'))
     const day = date.getDate()
     this[type] = { html: el.innerHTML, date, index, el }
-    el.innerHTML = daySelect(day, type)
+    el.innerHTML = daySelect(day, type, this.props[`${type}Text`])
   }
 
   dayType (year, month, day) {
@@ -325,6 +327,11 @@ export default class Calendar {
     this.isWeekend(year, month, day) && type.push('weekend')
     this.isWorkDay(month, day) && type.push('workday')
     return type.join(' ')
+  }
+
+  monthType (name, month) {
+    const date = this[`${name}Date`]
+    return date.getMonth() + 1 === month
   }
 
   // 是否休息日

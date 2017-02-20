@@ -17,10 +17,6 @@ function getEnd (_month) {
 export default function getDefaultOptions () {
   return {
     data,
-    text: {
-      holiday: '休',
-      workday: '班'
-    },
     el: document.body,
     start: `${year}-${zeroPadding(month)}-${zeroPadding(day)}`,
     end: getEnd(6),

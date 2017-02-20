@@ -11,6 +11,6 @@ export const dayItem = function (type, text, remark = '', value = '', index = ''
   return `<li data-index="${index}" data-date="${value}" class="${type}"><span class="calendar-text">${text}</span><span class="calendar-remark">${remark}</span></li>`
 }
 
-export const daySelect = function (day, type) {
-  return `<div class="calendar-day-select select-${type}"><span class="day">${day}</span><span class="text">${type === 'start' ? '入住' : '离店'}</span><div class="elem-proxy"></div></div>`
+export const daySelect = function (day, type, typeText) {
+  return `<div class="calendar-day-select select-${type}"><span class="day">${day}</span><span class="text">${typeText}</span><div class="elem-proxy"></div></div>`
 }
