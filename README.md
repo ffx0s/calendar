@@ -1,6 +1,10 @@
-# 酒店日期选择
+# 移动端日期选择
 ![gif][1]
 
+
+## demo
+
+[https://ffx0s.github.io/calendar/build/demo.html](https://ffx0s.github.io/calendar/build/demo.html)
 
 ## 安装
 
@@ -8,6 +12,9 @@ Install with [npm](https://www.npmjs.com/package/hotel-calendar): `npm install h
 
 ## 使用
 
+``` css
+<link rel="stylesheet" href="calendar.css">
+```
 ``` js
 var Calendar = require('calendar')
 var options = {}
@@ -82,6 +89,17 @@ endCallback: function (date) {}
 ```
 
 离店点击回调
+
+### selectDate
+
+**Type:** _Object_
+
+``` js
+selectDate: { start: '2017-04-25', end: '2017-05-10' }
+```
+
+当前选中的时间
+
 
 ## Calendar静态方法
 
