@@ -4,7 +4,7 @@
 
 ## demo
 
-[https://ffx0s.github.io/calendar/build/demo.html](https://ffx0s.github.io/calendar/build/demo.html)
+[https://ffx0s.github.io/calendar/dist/demo.html](https://ffx0s.github.io/calendar/dist/demo.html)
 
 ## 安装
 
