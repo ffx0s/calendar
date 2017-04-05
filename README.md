@@ -17,6 +17,7 @@ Install with [npm](https://www.npmjs.com/package/hotel-calendar): `npm install h
 <script src="calendar.js"></script>
 
 <script>
+  var options = {}
   var calendar = new Calendar(options)
   calendar.init()
 </script>
