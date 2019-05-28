@@ -125,10 +125,4 @@ Calendar.format(date, 'yyyy年MM月dd日 hh:mm:ss')
 
 Android 4+, iOS 6+
 
-
-## License
-
-calendar is released under the [MIT License](http://desandro.mit-license.org/). Have at it.
-
-
   [1]: http://static.webfed.cn/calendar/calendar-1.gif
